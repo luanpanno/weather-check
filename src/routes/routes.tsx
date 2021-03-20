@@ -1,12 +1,15 @@
 import { Redirect, Route, Switch } from 'react-router';
+import Layout from '../container/Layout';
 import Home from '../pages/Home';
 
 const Routes = () => {
   return (
     <Switch>
-      <Route exact path="/" component={Home} />
+      <Layout>
+        <Route exact path="/" component={Home} />
 
-      <Redirect to="/" />
+        <Redirect to="/" />
+      </Layout>
     </Switch>
   );
 };
