@@ -6,12 +6,6 @@ export const Container = styled.nav`
   justify-content: space-between;
   padding: 0 300px;
   height: 60px;
-  background-color: #333;
+  background-color: ${(props) => props.theme.colors.dark};
   gap: 25px;
-
-  a {
-    font-size: 1.4rem;
-    color: white;
-    text-decoration: none;
-  }
 `;

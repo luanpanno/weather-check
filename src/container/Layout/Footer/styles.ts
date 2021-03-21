@@ -5,7 +5,7 @@ export const Container = styled.footer`
   flex-direction: column;
   align-items: center;
   gap: 5px;
-  background-color: #333;
+  background-color: ${(props) => props.theme.colors.dark};
   color: white;
   padding: 10px 150px;
 

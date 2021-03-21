@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom';
-
 import DashboardButton from './DashboardButton';
+import Logo from './Logo';
 import SearchBar from './SearchBar';
 import { Container } from './styles';
 import Temp from './Temp';
@@ -8,7 +7,7 @@ import Temp from './Temp';
 const Nav = () => {
   return (
     <Container>
-      <Link to="/">Weather Check</Link>
+      <Logo />
       <SearchBar />
       <Temp />
       <DashboardButton />
