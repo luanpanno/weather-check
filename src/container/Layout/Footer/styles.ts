@@ -4,10 +4,10 @@ export const Container = styled.footer`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
   background-color: #333;
   color: white;
-  padding: 15px 150px;
+  padding: 10px 150px;
 
   span {
     font-size: 0.9rem;
