@@ -15,6 +15,4 @@ export const GlobalStyles = createGlobalStyle`
       outline: 0;
     }
   }
-
 `;
-export default GlobalStyles;
