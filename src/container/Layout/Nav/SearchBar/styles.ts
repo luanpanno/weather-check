@@ -3,10 +3,12 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   background-color: #fff;
   border: 1px solid #eaeaea;
   border-radius: 25px;
   overflow: hidden;
+  width: 50%;
 
   input {
     border: none;
@@ -16,6 +18,7 @@ export const Container = styled.div`
     padding-right: 0;
     font-size: 1rem;
     min-width: 300px;
+    width: 100%;
   }
 
   button {
