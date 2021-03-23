@@ -54,5 +54,11 @@ export interface WeatherResponse {
 
 export interface WeatherParams {
   q: string;
-  appId: string;
+  lang?: string;
+}
+
+export interface WeatherParamsByCoords {
+  lat: number | undefined;
+  lon: number | undefined;
+  lang?: string;
 }
