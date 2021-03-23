@@ -1,4 +1,5 @@
 import { AxiosInstance } from 'axios';
+
 import { WeatherParams, WeatherResponse } from '../models/Weather';
 
 export class OpenWeatherService {
