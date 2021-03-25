@@ -37,10 +37,10 @@ const MainCard = () => {
         <Temp>{weather?.main.temp}°</Temp>
         <MinMaxContainer>
           <MinMax>
-            <RiArrowUpFill /> {weather?.main.temp_max}°
+            <RiArrowDownFill /> {weather?.main.temp_min}°
           </MinMax>
           <MinMax>
-            <RiArrowDownFill /> {weather?.main.temp_min}°
+            <RiArrowUpFill /> {weather?.main.temp_max}°
           </MinMax>
         </MinMaxContainer>
       </TempContainer>
