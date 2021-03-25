@@ -16,9 +16,9 @@ interface Context {
   fetchWeatherByCoords: () => void;
 }
 
-export const LocationContext = createContext<Context>({} as Context);
+export const WeatherContext = createContext<Context>({} as Context);
 
-export const LocationProvider: React.FC = ({ children }) => {
+export const WeatherProvider: React.FC = ({ children }) => {
   const [weather, setWeather] = useState<WeatherResponse>();
   const [userCoords, setUserCoords] = useState<GeolocationCoordinates>();
 
@@ -58,12 +58,12 @@ export const LocationProvider: React.FC = ({ children }) => {
   }, [fetchWeatherByCoords, userCoords]);
 
   return (
-    <LocationContext.Provider
+    <WeatherContext.Provider
       value={{ fetchWeather, fetchWeatherByCoords, weather }}
     >
       {children}
-    </LocationContext.Provider>
+    </WeatherContext.Provider>
   );
 };
 
-export const useLocations = () => useContext(LocationContext);
+export const useWeather = () => useContext(WeatherContext);

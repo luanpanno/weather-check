@@ -12,7 +12,6 @@ export const Container = styled.div`
 
 export const Main = styled.main`
   padding: 50px 0;
-  margin: 0 300px;
-  background-color: #fff;
-  box-shadow: 0 1px 5px 2px rgba(0, 0, 0, 0.1);
+  margin: 0 500px;
+  min-width: 300px;
 `;

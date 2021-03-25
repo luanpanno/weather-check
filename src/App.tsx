@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from './assets/styles/GlobalStyles';
 import { theme } from './assets/styles/theme';
 import Routes from './routes/routes';
-import { LocationProvider } from './shared/hooks/useLocations';
+import { WeatherProvider } from './shared/hooks/useWeather';
 
 function App() {
   return (
@@ -13,9 +13,9 @@ function App() {
       <GlobalStyles />
       <ToastContainer />
       <BrowserRouter>
-        <LocationProvider>
+        <WeatherProvider>
           <Routes />
-        </LocationProvider>
+        </WeatherProvider>
       </BrowserRouter>
     </ThemeProvider>
   );
