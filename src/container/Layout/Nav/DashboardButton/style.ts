@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const Container = styled.button`
+export const Container = styled.div`
+  position: relative;
+`;
+
+export const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
