@@ -6,22 +6,28 @@ import { Container, TempButton } from './styles';
 const Temp = () => {
   const { unit, setUnit } = useWeather();
 
+  function handleUnitClick(e: React.MouseEvent<HTMLButtonElement>) {
+    const { name } = e.currentTarget;
+
+    setUnit(name);
+  }
+
   return (
     <Container>
       <TempButton
         type="button"
-        onClick={() => setUnit('metric')}
-        unit={unit}
         name="metric"
+        unit={unit}
+        onClick={handleUnitClick}
       >
         °C
-      </TempButton>{' '}
+      </TempButton>
       |
       <TempButton
         type="button"
-        onClick={() => setUnit('standard')}
-        unit={unit}
         name="standard"
+        unit={unit}
+        onClick={handleUnitClick}
       >
         °F
       </TempButton>
