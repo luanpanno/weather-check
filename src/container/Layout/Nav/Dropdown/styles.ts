@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface PinnedProps {
+  active: boolean;
+}
+
 export const Container = styled.div`
   position: absolute;
   background-color: #fff;
@@ -27,7 +31,7 @@ export const Content = styled.div`
   margin-top: 5px;
 `;
 
-export const Pinned = styled.div`
+export const Pinned = styled.div<PinnedProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -35,9 +39,11 @@ export const Pinned = styled.div`
   padding: 10px 20px;
   cursor: pointer;
   transition: all 100ms;
+  background-color: ${(props) => props.active && 'rgba(255, 150, 0, 0.4)'};
 
   &:hover {
-    background-color: #eaeaea;
+    background-color: ${(props) =>
+      props.active ? 'rgba(255, 150, 0, 0.3)' : '#eaeaea'};
   }
 `;
 
@@ -65,5 +71,5 @@ export const Button = styled.button`
 export const NoPin = styled.p`
   padding: 10px;
   text-align: center;
-  color: #dedede;
+  color: #cecece;
 `;

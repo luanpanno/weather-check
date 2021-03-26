@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { RiCloseCircleFill, RiSearchLine } from 'react-icons/ri';
 
 import { useWeather } from '../../../../shared/hooks/useWeather';
 import { Container } from './styles';
 
 const SearchBar = () => {
-  const { weather, fetchWeather } = useWeather();
-  const [query, setQuery] = useState('');
+  const { weather, fetchWeather, query, setQuery } = useWeather();
 
   useEffect(() => {
     if (weather) setQuery(`${weather?.name}, ${weather?.sys?.country}`);
-  }, [weather]);
+  }, [setQuery, weather]);
 
   function handleQueryChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { value } = e.target;
