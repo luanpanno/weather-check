@@ -9,7 +9,7 @@ const SearchBar = () => {
   const [query, setQuery] = useState('');
 
   useEffect(() => {
-    if (weather) setQuery(weather?.name);
+    if (weather) setQuery(`${weather?.name}, ${weather?.sys?.country}`);
   }, [weather]);
 
   function handleQueryChange(e: React.ChangeEvent<HTMLInputElement>) {
