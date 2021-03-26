@@ -10,6 +10,10 @@ export const Container = styled.div`
   display: grid;
   grid-template-columns: 4fr 1fr;
   position: relative;
+
+  .loading-container {
+    grid-column: 1/3;
+  }
 `;
 
 export const TempContainer = styled.div``;

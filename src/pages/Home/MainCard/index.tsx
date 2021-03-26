@@ -5,6 +5,7 @@ import {
   RiPushpinFill,
 } from 'react-icons/ri';
 
+import Loading from '../../../components/Loading';
 import { useWeather } from '../../../shared/hooks/useWeather';
 import {
   Container,
@@ -22,6 +23,14 @@ const MainCard = () => {
 
   function placeText() {
     return `${weather?.name}, ${weather?.sys.country}`;
+  }
+
+  if (!weather) {
+    return (
+      <Container>
+        <Loading />
+      </Container>
+    );
   }
 
   return (
