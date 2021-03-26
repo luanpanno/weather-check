@@ -21,7 +21,7 @@ export const TempContainer = styled.div``;
 export const Place = styled.p`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
 `;
 
 export const Temp = styled.p`
@@ -74,4 +74,13 @@ export const PinButton = styled.button`
   }
 `;
 
-export const CloudsContainer = styled.div``;
+export const CloudsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    font-size: 6rem;
+  }
+`;

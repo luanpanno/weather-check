@@ -6,6 +6,7 @@ import {
 } from 'react-icons/ri';
 
 import Loading from '../../../components/Loading';
+import WeatherIcon from '../../../components/WeatherIcon';
 import { useWeather } from '../../../shared/hooks/useWeather';
 import {
   Container,
@@ -54,10 +55,10 @@ const MainCard = () => {
         </MinMaxContainer>
       </TempContainer>
       <CloudsContainer>
-        <p>{weather?.weather[0]?.main}</p>
+        {/* <p>{weather?.weather[0]?.main}</p> */}
+        <WeatherIcon description={weather?.weather[0]?.description} />
         <p>{weather?.weather[0]?.description}</p>
-        <p>{weather?.clouds.all}</p>
-        <p>{weather?.weather[0]?.main}</p>
+        <p>cloudiness: {weather?.clouds.all}%</p>
       </CloudsContainer>
     </Container>
   );
