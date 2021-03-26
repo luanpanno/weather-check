@@ -1,17 +1,28 @@
 import { RiCloseCircleFill } from 'react-icons/ri';
 
-import { Container, Content, Pinned, Button } from './styles';
+import { useWeather } from '../../../../shared/hooks/useWeather';
+import { Container, Content, Pinned, Button, NoPin } from './styles';
 
 const Dropdown: React.FC = () => {
+  const { pinned } = useWeather();
+
   return (
     <Container>
       <Content>
-        <Pinned>
-          Rio de Janeiro, BR
-          <Button type="button">
-            <RiCloseCircleFill />
-          </Button>
-        </Pinned>
+        {pinned?.length <= 0 ? (
+          <NoPin>There&apos;s no place pinned</NoPin>
+        ) : (
+          pinned?.map((pin) => {
+            return (
+              <Pinned key={pin}>
+                {pin}
+                <Button type="button">
+                  <RiCloseCircleFill />
+                </Button>
+              </Pinned>
+            );
+          })
+        )}
       </Content>
     </Container>
   );

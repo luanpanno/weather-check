@@ -61,3 +61,9 @@ export const Button = styled.button`
     font-size: 1.2rem;
   }
 `;
+
+export const NoPin = styled.p`
+  padding: 10px;
+  text-align: center;
+  color: #dedede;
+`;
