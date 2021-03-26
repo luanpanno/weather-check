@@ -12,8 +12,8 @@ import { handleError } from '../utils/handleError';
 
 interface Context {
   weather: WeatherResponse | undefined;
-  fetchWeather: (params: WeatherParams) => void;
-  fetchWeatherByCoords: () => void;
+  fetchWeather: (params: WeatherParams) => Promise<void>;
+  fetchWeatherByCoords: () => Promise<void>;
 }
 
 export const WeatherContext = createContext<Context>({} as Context);
@@ -43,8 +43,6 @@ export const WeatherProvider: React.FC = ({ children }) => {
     } catch (error) {
       handleError(error);
     }
-
-    return null;
   }, [userCoords]);
 
   useEffect(() => {

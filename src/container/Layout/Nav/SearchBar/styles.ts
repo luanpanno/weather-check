@@ -21,7 +21,25 @@ export const Container = styled.div`
     width: 100%;
   }
 
-  button {
+  .clear {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    padding: 5px;
+    margin-right: 5px;
+    transition: all 100ms;
+    cursor: pointer;
+
+    svg {
+      font-size: 1.1rem;
+      fill: #888;
+    }
+  }
+
+  .search {
     display: flex;
     align-items: center;
     justify-content: center;
