@@ -18,7 +18,7 @@ const SearchBar = () => {
     setQuery(value);
   }
 
-  async function handleWeatherClick() {
+  async function handleWeatherSearch() {
     if (!query) return;
 
     await fetchWeather({ q: query });
@@ -27,7 +27,7 @@ const SearchBar = () => {
   async function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
     const { key } = e;
 
-    if (key === 'Enter') await handleWeatherClick();
+    if (key === 'Enter') await handleWeatherSearch();
   }
 
   function clearQuery() {
@@ -47,7 +47,7 @@ const SearchBar = () => {
           <RiCloseCircleFill />
         </button>
       )}
-      <button type="button" onClick={handleWeatherClick} className="search">
+      <button type="button" onClick={handleWeatherSearch} className="search">
         <RiSearchLine />
       </button>
     </Container>
