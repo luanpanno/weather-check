@@ -20,10 +20,26 @@ import {
 } from './styles';
 
 const MainCard = () => {
-  const { weather } = useWeather();
+  const { weather, pinned, setPinned } = useWeather();
 
   function placeText() {
     return `${weather?.name}, ${weather?.sys.country}`;
+  }
+
+  function findPin() {
+    return pinned?.find((item) => item === placeText());
+  }
+
+  function checkIsPinned() {
+    return !!findPin();
+  }
+
+  function handlePinClick() {
+    if (checkIsPinned()) {
+      setPinned(pinned?.filter((item) => item !== placeText()));
+    } else {
+      setPinned([...(pinned ?? []), placeText()]);
+    }
   }
 
   if (!weather) {
@@ -36,7 +52,11 @@ const MainCard = () => {
 
   return (
     <Container>
-      <PinButton type="button">
+      <PinButton
+        type="button"
+        onClick={handlePinClick}
+        isPinned={checkIsPinned()}
+      >
         <RiPushpinFill />
       </PinButton>
       <TempContainer>

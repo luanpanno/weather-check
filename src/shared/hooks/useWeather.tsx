@@ -13,6 +13,8 @@ import { handleError } from '../utils/handleError';
 interface Context {
   weather: WeatherResponse | undefined;
   unit: string;
+  pinned: string[];
+  setPinned: (state: string[]) => void;
   setUnit: (value: string) => void;
   fetchWeather: (query: string) => Promise<void>;
   fetchWeatherByCoords: () => Promise<void>;
@@ -24,6 +26,7 @@ export const WeatherProvider: React.FC = ({ children }) => {
   const [weather, setWeather] = useState<WeatherResponse>();
   const [unit, setUnit] = useState('standard');
   const [userCoords, setUserCoords] = useState<GeolocationCoordinates>();
+  const [pinned, setPinned] = useState<string[]>([]);
 
   const fetchWeather = useCallback(
     async (query: string) => {
@@ -67,7 +70,15 @@ export const WeatherProvider: React.FC = ({ children }) => {
 
   return (
     <WeatherContext.Provider
-      value={{ fetchWeather, fetchWeatherByCoords, weather, unit, setUnit }}
+      value={{
+        fetchWeather,
+        fetchWeatherByCoords,
+        weather,
+        unit,
+        setUnit,
+        pinned,
+        setPinned,
+      }}
     >
       {children}
     </WeatherContext.Provider>

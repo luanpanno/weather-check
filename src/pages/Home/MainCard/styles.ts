@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface PinButtonProps {
+  isPinned: boolean;
+}
+
 export const Container = styled.div`
   /* background-color: rgba(0, 0, 0, 0.2); */
   /* background-color: rgba(255, 150, 0, 0.8); */
@@ -50,8 +54,9 @@ export const MinMax = styled.span`
   }
 `;
 
-export const PinButton = styled.button`
-  background-color: rgba(0, 0, 0, 0.2);
+export const PinButton = styled.button<PinButtonProps>`
+  background-color: ${(props) =>
+    props.isPinned ? 'green' : 'rgba(0, 0, 0, 0.2)'};
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -63,11 +68,12 @@ export const PinButton = styled.button`
   right: 5px;
   top: 5px;
   padding: 8px;
-  cursor: pointer;
   transition: all 100ms;
+  cursor: pointer;
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: ${(props) =>
+      props.isPinned ? 'red' : 'rgba(0, 0, 0, 0.1)'};
   }
 
   svg {
