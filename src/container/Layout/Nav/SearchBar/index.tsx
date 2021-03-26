@@ -21,7 +21,7 @@ const SearchBar = () => {
   async function handleWeatherSearch() {
     if (!query) return;
 
-    await fetchWeather({ q: query });
+    await fetchWeather(query);
   }
 
   async function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {

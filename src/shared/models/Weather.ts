@@ -55,10 +55,12 @@ export interface WeatherResponse {
 export interface WeatherParams {
   q: string;
   lang?: string;
+  units?: string;
 }
 
 export interface WeatherParamsByCoords {
   lat: number | undefined;
   lon: number | undefined;
   lang?: string;
+  units?: string;
 }

@@ -6,13 +6,15 @@ import {
   useState,
 } from 'react';
 
-import { WeatherParams, WeatherResponse } from '../models/Weather';
+import { WeatherResponse } from '../models/Weather';
 import { openWeatherService } from '../services';
 import { handleError } from '../utils/handleError';
 
 interface Context {
   weather: WeatherResponse | undefined;
-  fetchWeather: (params: WeatherParams) => Promise<void>;
+  unit: string;
+  setUnit: (value: string) => void;
+  fetchWeather: (query: string) => Promise<void>;
   fetchWeatherByCoords: () => Promise<void>;
 }
 
@@ -20,30 +22,38 @@ export const WeatherContext = createContext<Context>({} as Context);
 
 export const WeatherProvider: React.FC = ({ children }) => {
   const [weather, setWeather] = useState<WeatherResponse>();
+  const [unit, setUnit] = useState('standard');
   const [userCoords, setUserCoords] = useState<GeolocationCoordinates>();
 
-  const fetchWeather = useCallback(async (params: WeatherParams) => {
-    try {
-      const response = await openWeatherService.getWeather(params);
+  const fetchWeather = useCallback(
+    async (query: string) => {
+      try {
+        const response = await openWeatherService.getWeather({
+          q: query,
+          units: unit,
+        });
 
-      setWeather(response);
-    } catch (error) {
-      handleError(error);
-    }
-  }, []);
+        setWeather(response);
+      } catch (error) {
+        handleError(error);
+      }
+    },
+    [unit]
+  );
 
   const fetchWeatherByCoords = useCallback(async () => {
     try {
       const response = await openWeatherService.getWeatherByCoords({
         lon: userCoords?.longitude,
         lat: userCoords?.latitude,
+        units: unit,
       });
 
       setWeather(response);
     } catch (error) {
       handleError(error);
     }
-  }, [userCoords]);
+  }, [unit, userCoords]);
 
   useEffect(() => {
     if (!userCoords) {
@@ -57,7 +67,7 @@ export const WeatherProvider: React.FC = ({ children }) => {
 
   return (
     <WeatherContext.Provider
-      value={{ fetchWeather, fetchWeatherByCoords, weather }}
+      value={{ fetchWeather, fetchWeatherByCoords, weather, unit, setUnit }}
     >
       {children}
     </WeatherContext.Provider>

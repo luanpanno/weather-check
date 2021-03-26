@@ -1,9 +1,30 @@
-import { Container } from './styles';
+import React from 'react';
+
+import { useWeather } from '../../../../shared/hooks/useWeather';
+import { Container, TempButton } from './styles';
 
 const Temp = () => {
+  const { unit, setUnit } = useWeather();
+
   return (
     <Container>
-      <button type="button">°C</button> / <button type="button">°F</button>
+      <TempButton
+        type="button"
+        onClick={() => setUnit('metric')}
+        unit={unit}
+        name="metric"
+      >
+        °C
+      </TempButton>{' '}
+      |
+      <TempButton
+        type="button"
+        onClick={() => setUnit('standard')}
+        unit={unit}
+        name="standard"
+      >
+        °F
+      </TempButton>
     </Container>
   );
 };
