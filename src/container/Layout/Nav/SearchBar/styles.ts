@@ -5,7 +5,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   background-color: #fff;
-  border: 1px solid #eaeaea;
+  border: 1px solid ${(props) => props.theme.colors.lightGrey};
   border-radius: 25px;
   overflow: hidden;
   width: 50%;
@@ -35,7 +35,7 @@ export const Container = styled.div`
 
     svg {
       font-size: 1.1rem;
-      fill: #888;
+      fill: ${(props) => props.theme.colors.grey};
     }
   }
 
@@ -47,17 +47,17 @@ export const Container = styled.div`
     outline: none;
     background-color: transparent;
     padding: 5px 10px;
-    border-left: 1px solid #eaeaea;
+    border-left: 1px solid ${(props) => props.theme.colors.lightGrey};
     transition: all 100ms;
     cursor: pointer;
 
     &:hover {
-      background-color: rgba(0, 0, 0, 0.1);
+      background-color: ${(props) => props.theme.colors.lightTransparency};
     }
 
     svg {
       font-size: 1.5rem;
-      color: #333;
+      color: ${(props) => props.theme.colors.dark};
     }
   }
 `;

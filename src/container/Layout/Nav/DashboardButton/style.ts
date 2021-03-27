@@ -12,12 +12,12 @@ export const Button = styled.button`
   border-radius: 50%;
   border: none;
   outline: none;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: ${(props) => props.theme.colors.transparency};
   cursor: pointer;
   transition: all 100ms;
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: ${(props) => props.theme.colors.lightTransparency};
   }
 
   svg {

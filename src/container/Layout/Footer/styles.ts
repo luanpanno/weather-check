@@ -11,10 +11,10 @@ export const Container = styled.footer`
 
   span {
     font-size: 0.9rem;
-    color: #aaa;
+    color: ${(props) => props.theme.colors.lightGrey};
 
     a {
-      color: #aaa;
+      color: ${(props) => props.theme.colors.lightGrey};
     }
   }
 `;

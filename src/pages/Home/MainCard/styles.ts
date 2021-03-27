@@ -5,13 +5,11 @@ interface PinButtonProps {
 }
 
 export const Container = styled.div`
-  /* background-color: rgba(0, 0, 0, 0.2); */
-  /* background-color: rgba(255, 150, 0, 0.8); */
   background-color: ${(props) => props.theme.colors.primary};
   padding: 40px 50px;
   border-radius: 10px;
   color: white;
-  box-shadow: 0 1px 5px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 5px 2px ${(props) => props.theme.colors.lightTransparency};
   display: grid;
   grid-template-columns: 4fr 1fr;
   position: relative;
@@ -33,13 +31,11 @@ export const Temp = styled.p`
   font-size: 3.2rem;
   font-weight: bold;
   margin: 25px 0;
-  text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.1);
-  /* margin: 10px 0 25px 0; */
+  text-shadow: 2px 2px 1px ${(props) => props.theme.colors.lightTransparency};
 `;
 
 export const MinMaxContainer = styled.div`
   display: flex;
-  /* flex-direction: column; */
   gap: 10px;
 `;
 
@@ -56,7 +52,9 @@ export const MinMax = styled.span`
 
 export const PinButton = styled.button<PinButtonProps>`
   background-color: ${(props) =>
-    props.isPinned ? 'green' : 'rgba(0, 0, 0, 0.2)'};
+    props.isPinned
+      ? props.theme.colors.green
+      : props.theme.colors.transparency};
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -73,7 +71,9 @@ export const PinButton = styled.button<PinButtonProps>`
 
   &:hover {
     background-color: ${(props) =>
-      props.isPinned ? 'red' : 'rgba(0, 0, 0, 0.1)'};
+      props.isPinned
+        ? props.theme.colors.red
+        : props.theme.colors.lightTransparency};
   }
 
   svg {

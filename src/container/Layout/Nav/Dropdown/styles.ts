@@ -13,7 +13,7 @@ export const Container = styled.div`
   background-color: #fff;
   padding: 10px 0;
   border-radius: 5px;
-  box-shadow: 1px 2px 2px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 2px 2px 2px ${(props) => props.theme.colors.lightTransparency};
   top: 50px;
   left: calc(-50% - 78px);
   min-width: 250px;
@@ -62,7 +62,7 @@ export const SetMainButton = styled.button<MainButtonProps>`
   align-items: center;
   justify-content: center;
   background-color: transparent;
-  color: #777;
+  color: ${(props) => props.theme.colors.grey};
   border: none;
   outline: none;
   transition: all 100ms;
@@ -78,7 +78,8 @@ export const SetMainButton = styled.button<MainButtonProps>`
   }
 
   &:hover {
-    color: ${(props) => (props.isMainPlace ? 'red' : 'green')};
+    color: ${(props) =>
+      props.isMainPlace ? props.theme.colors.red : props.theme.colors.green};
 
     .eye-open {
       display: ${(props) => (props.isMainPlace ? 'none' : 'inline-block')};
@@ -99,7 +100,7 @@ export const RemoveButton = styled.button`
   align-items: center;
   justify-content: center;
   background-color: transparent;
-  color: #777;
+  color: ${(props) => props.theme.colors.grey};
   border: none;
   outline: none;
   transition: all 100ms;
@@ -107,7 +108,7 @@ export const RemoveButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    color: #c80000;
+    color: ${(props) => props.theme.colors.red};
   }
 
   svg {
