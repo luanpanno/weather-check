@@ -15,6 +15,8 @@ interface Context {
   unit: string;
   query: string;
   pinned: string[];
+  mainPlace: string;
+  setMainPlace: (value: string) => void;
   setQuery: (state: string) => void;
   setPinned: (state: string[]) => void;
   setUnit: (value: string) => void;
@@ -25,11 +27,29 @@ interface Context {
 export const WeatherContext = createContext<Context>({} as Context);
 
 export const WeatherProvider: React.FC = ({ children }) => {
+  const unitStorage = localStorage.getItem('unit');
+  const pinnedStorage = localStorage.getItem('pinned');
+  const mainPlaceStorage = localStorage.getItem('mainPlace');
   const [weather, setWeather] = useState<WeatherResponse>();
-  const [unit, setUnit] = useState('standard');
+  const [unit, setUnit] = useState(unitStorage ?? 'standard');
   const [userCoords, setUserCoords] = useState<GeolocationCoordinates>();
   const [query, setQuery] = useState('');
-  const [pinned, setPinned] = useState<string[]>([]);
+  const [mainPlace, setMainPlace] = useState(mainPlaceStorage ?? '');
+  const [pinned, setPinned] = useState<string[]>(
+    JSON.parse(pinnedStorage ?? '') ?? []
+  );
+
+  useEffect(() => {
+    localStorage.setItem('unit', unit);
+  }, [unit]);
+
+  useEffect(() => {
+    localStorage.setItem('pinned', JSON.stringify(pinned));
+  }, [pinned]);
+
+  useEffect(() => {
+    localStorage.setItem('mainPlace', mainPlace);
+  }, [mainPlace]);
 
   const fetchWeather = useCallback(
     async (q: string) => {
@@ -66,10 +86,12 @@ export const WeatherProvider: React.FC = ({ children }) => {
       navigator.geolocation.getCurrentPosition((pos) => {
         setUserCoords(pos.coords);
       });
-    } else {
+    } else if (!mainPlace) {
       fetchWeatherByCoords().then();
+    } else if (mainPlace) {
+      fetchWeather(mainPlace);
     }
-  }, [fetchWeatherByCoords, userCoords]);
+  }, [fetchWeather, fetchWeatherByCoords, mainPlace, userCoords]);
 
   return (
     <WeatherContext.Provider
@@ -83,6 +105,8 @@ export const WeatherProvider: React.FC = ({ children }) => {
         setPinned,
         query,
         setQuery,
+        mainPlace,
+        setMainPlace,
       }}
     >
       {children}

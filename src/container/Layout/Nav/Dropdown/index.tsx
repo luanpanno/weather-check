@@ -1,10 +1,25 @@
-import { RiCloseCircleFill } from 'react-icons/ri';
+import { RiCloseCircleFill, RiEye2Line, RiEyeCloseFill } from 'react-icons/ri';
 
 import { useWeather } from '../../../../shared/hooks/useWeather';
-import { Container, Content, Pinned, Button, NoPin } from './styles';
+import {
+  Container,
+  Content,
+  Pinned,
+  RemoveButton,
+  NoPin,
+  SetMainButton,
+} from './styles';
 
 const Dropdown: React.FC = () => {
-  const { pinned, setPinned, query, setQuery, fetchWeather } = useWeather();
+  const {
+    pinned,
+    setPinned,
+    query,
+    setQuery,
+    fetchWeather,
+    setMainPlace,
+    mainPlace,
+  } = useWeather();
 
   function handleRemovePin(pin: string) {
     setPinned(pinned?.filter((item) => item !== pin));
@@ -13,6 +28,14 @@ const Dropdown: React.FC = () => {
   function handlePinnedClick(pin: string) {
     setQuery(pin);
     fetchWeather(pin);
+  }
+
+  function handleSetMain(pin: string) {
+    if (mainPlace === pin) {
+      setMainPlace('');
+    } else {
+      setMainPlace(pin);
+    }
   }
 
   return (
@@ -28,10 +51,23 @@ const Dropdown: React.FC = () => {
                 onClick={() => handlePinnedClick(pin)}
                 active={query === pin}
               >
-                {pin}
-                <Button type="button" onClick={() => handleRemovePin(pin)}>
+                <div>
+                  <SetMainButton
+                    type="button"
+                    onClick={() => handleSetMain(pin)}
+                    isMainPlace={mainPlace === pin}
+                  >
+                    <RiEye2Line className="eye-open" />
+                    <RiEyeCloseFill className="eye-closed" />
+                  </SetMainButton>
+                  {pin}
+                </div>
+                <RemoveButton
+                  type="button"
+                  onClick={() => handleRemovePin(pin)}
+                >
                   <RiCloseCircleFill />
-                </Button>
+                </RemoveButton>
               </Pinned>
             );
           })

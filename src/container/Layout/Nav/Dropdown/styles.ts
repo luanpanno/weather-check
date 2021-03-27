@@ -4,6 +4,10 @@ interface PinnedProps {
   active: boolean;
 }
 
+interface MainButtonProps {
+  isMainPlace: boolean;
+}
+
 export const Container = styled.div`
   position: absolute;
   background-color: #fff;
@@ -35,11 +39,17 @@ export const Pinned = styled.div<PinnedProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
-  padding: 10px 20px;
+  gap: 5px;
+  padding: 10px 15px;
   cursor: pointer;
   transition: all 100ms;
   background-color: ${(props) => props.active && 'rgba(255, 150, 0, 0.4)'};
+
+  & > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 
   &:hover {
     background-color: ${(props) =>
@@ -47,7 +57,44 @@ export const Pinned = styled.div<PinnedProps>`
   }
 `;
 
-export const Button = styled.button`
+export const SetMainButton = styled.button<MainButtonProps>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: #777;
+  border: none;
+  outline: none;
+  transition: all 100ms;
+  padding: 0;
+  cursor: pointer;
+
+  .eye-open {
+    display: ${(props) => (props.isMainPlace ? 'inline-block' : 'none')};
+  }
+
+  .eye-closed {
+    display: ${(props) => (props.isMainPlace ? 'none' : 'inline-block')};
+  }
+
+  &:hover {
+    color: ${(props) => (props.isMainPlace ? 'red' : 'green')};
+
+    .eye-open {
+      display: ${(props) => (props.isMainPlace ? 'none' : 'inline-block')};
+    }
+
+    .eye-closed {
+      display: ${(props) => (props.isMainPlace ? 'inline-block' : 'none')};
+    }
+  }
+
+  svg {
+    font-size: 1.2rem;
+  }
+`;
+
+export const RemoveButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
