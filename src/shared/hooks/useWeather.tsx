@@ -36,7 +36,7 @@ export const WeatherProvider: React.FC = ({ children }) => {
   const [query, setQuery] = useState('');
   const [mainPlace, setMainPlace] = useState(mainPlaceStorage ?? '');
   const [pinned, setPinned] = useState<string[]>(
-    JSON.parse(pinnedStorage ?? '') ?? []
+    pinnedStorage ? JSON.parse(pinnedStorage) : []
   );
 
   useEffect(() => {
