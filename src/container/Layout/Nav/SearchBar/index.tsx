@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { RiCloseCircleFill, RiSearchLine } from 'react-icons/ri';
 
+import Tooltip from '../../../../components/Tooltip';
 import { useWeather } from '../../../../shared/hooks/useWeather';
+import { handleTooltipId } from '../../../../shared/utils/handleTooltipId';
 import { Container } from './styles';
 
 const SearchBar = () => {
@@ -42,12 +44,26 @@ const SearchBar = () => {
         onKeyDown={handleKeyDown}
       />
       {query && (
-        <button type="button" className="clear" onClick={clearQuery}>
+        <button
+          type="button"
+          className="clear"
+          onClick={clearQuery}
+          data-tip="Clear query"
+          data-for={handleTooltipId('clear', 'query')}
+        >
           <RiCloseCircleFill />
+          <Tooltip id={handleTooltipId('clear', 'query')} />
         </button>
       )}
-      <button type="button" onClick={handleWeatherSearch} className="search">
+      <button
+        type="button"
+        onClick={handleWeatherSearch}
+        className="search"
+        data-tip="Search"
+        data-for={handleTooltipId('search', 'query')}
+      >
         <RiSearchLine />
+        <Tooltip id={handleTooltipId('search', 'query')} />
       </button>
     </Container>
   );
