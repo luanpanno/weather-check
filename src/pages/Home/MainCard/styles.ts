@@ -91,3 +91,8 @@ export const CloudsContainer = styled.div`
     font-size: 6rem;
   }
 `;
+
+export const WeatherDescription = styled.p`
+  font-weight: bold;
+  font-size: 1.2rem;
+`;

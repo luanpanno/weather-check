@@ -19,6 +19,7 @@ import {
   PinButton,
   TempContainer,
   CloudsContainer,
+  WeatherDescription,
 } from './styles';
 
 const MainCard = () => {
@@ -87,9 +88,10 @@ const MainCard = () => {
         </MinMaxContainer>
       </TempContainer>
       <CloudsContainer>
-        {/* <p>{weather?.weather[0]?.main}</p> */}
+        <WeatherDescription>
+          {weather?.weather[0]?.description}
+        </WeatherDescription>
         <WeatherIcon description={weather?.weather[0]?.description} />
-        <p>{weather?.weather[0]?.description}</p>
         <p>cloudiness: {weather?.clouds.all}%</p>
       </CloudsContainer>
     </Container>
