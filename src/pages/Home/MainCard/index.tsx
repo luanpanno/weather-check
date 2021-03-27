@@ -6,8 +6,10 @@ import {
 } from 'react-icons/ri';
 
 import Loading from '../../../components/Loading';
+import Tooltip from '../../../components/Tooltip';
 import WeatherIcon from '../../../components/WeatherIcon';
 import { useWeather } from '../../../shared/hooks/useWeather';
+import { handleTooltipId } from '../../../shared/utils/handleTooltipId';
 import {
   Container,
   Temp,
@@ -42,6 +44,13 @@ const MainCard = () => {
     }
   }
 
+  function handlePinTooltip() {
+    if (checkIsPinned()) {
+      return 'Remove from pinned list';
+    }
+    return 'Add to pinned list';
+  }
+
   if (!weather) {
     return (
       <Container>
@@ -56,8 +65,11 @@ const MainCard = () => {
         type="button"
         onClick={handlePinClick}
         isPinned={checkIsPinned()}
+        data-tip={handlePinTooltip()}
+        data-for={handleTooltipId('weather', 'remove')}
       >
         <RiPushpinFill />
+        <Tooltip id={handleTooltipId('weather', 'remove')} />
       </PinButton>
       <TempContainer>
         <Place>
