@@ -7,7 +7,7 @@ export const Container = styled.footer`
   gap: 5px;
   background-color: ${(props) => props.theme.colors.dark};
   color: white;
-  padding: 10px 150px;
+  padding: 10px 0;
 
   span {
     font-size: 0.9rem;

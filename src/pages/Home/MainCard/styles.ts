@@ -13,6 +13,8 @@ export const Container = styled.div`
   display: grid;
   grid-template-columns: 4fr 1fr;
   position: relative;
+  max-width: 800px;
+  min-width: 300px;
 
   .loading-container {
     grid-column: 1/3;
