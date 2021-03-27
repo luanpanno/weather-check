@@ -15,7 +15,7 @@ export const Container = styled.div`
   border-radius: 5px;
   box-shadow: 1px 2px 2px 2px rgba(0, 0, 0, 0.1);
   top: 50px;
-  left: calc(-50% - 80px);
+  left: calc(-50% - 78px);
   min-width: 250px;
 
   &::before {
