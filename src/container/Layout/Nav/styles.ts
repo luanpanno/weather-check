@@ -35,7 +35,7 @@ export const Container = styled.nav`
       'logo temp dashboard'
       'search search search';
     gap: 0;
-    padding: 0 10px;
+    padding: 5px 10px 8px 10px;
     /* justify-items: center; */
   }
 `;
