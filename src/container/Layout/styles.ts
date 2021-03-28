@@ -14,4 +14,8 @@ export const Main = styled.main`
   padding: 50px 0;
   margin: 0 30px;
   min-width: 300px;
+
+  @media screen and (max-width: 780px) {
+    margin: 0 15px;
+  }
 `;

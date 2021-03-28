@@ -21,9 +21,16 @@ export const Container = styled.div`
   .loading-container {
     grid-column: 1/3;
   }
+
+  @media screen and (max-width: 780px) {
+    padding: 40px 15px;
+  }
 `;
 
-export const TempContainer = styled.div``;
+export const TempContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 export const Place = styled.p`
   display: flex;
@@ -36,6 +43,11 @@ export const Temp = styled.p`
   font-weight: bold;
   margin: 25px 0;
   text-shadow: 2px 2px 1px ${(props) => props.theme.colors.lightTransparency};
+  align-self: center;
+
+  @media screen and (max-width: 780px) {
+    font-size: 2.5rem;
+  }
 `;
 
 export const MinMaxContainer = styled.div`
@@ -93,6 +105,10 @@ export const CloudsContainer = styled.div`
 
   svg {
     font-size: 6rem;
+
+    @media screen and (max-width: 780px) {
+      font-size: 4rem;
+    }
   }
 `;
 
