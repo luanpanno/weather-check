@@ -30,6 +30,17 @@ export const Container = styled.div`
     transform: rotate(45deg);
     border-radius: 2px;
   }
+
+  @media screen and (max-width: 1160px) {
+    left: initial;
+    right: 0;
+
+    &::before {
+      top: -4px;
+      left: initial;
+      right: 12px;
+    }
+  }
 `;
 
 export const Content = styled.div`
