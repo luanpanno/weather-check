@@ -10,10 +10,12 @@ export const Container = styled.div`
   border-radius: 10px;
   color: white;
   box-shadow: 0 1px 5px 2px ${(props) => props.theme.colors.lightTransparency};
-  display: grid;
-  grid-template-columns: 4fr 1fr;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
   position: relative;
   max-width: 800px;
+  width: 100%;
   min-width: 300px;
 
   .loading-container {

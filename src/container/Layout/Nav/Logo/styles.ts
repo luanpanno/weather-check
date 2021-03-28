@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  grid-area: logo;
+
   a {
     font-size: 1.2rem;
     color: white;

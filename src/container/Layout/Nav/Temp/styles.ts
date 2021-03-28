@@ -10,6 +10,7 @@ export const Container = styled.div`
   align-items: center;
   gap: 10px;
   color: white;
+  grid-area: temp;
 `;
 
 export const TempButton = styled.button<Props>`

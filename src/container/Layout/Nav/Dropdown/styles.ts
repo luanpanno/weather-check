@@ -17,6 +17,7 @@ export const Container = styled.div`
   top: 50px;
   left: calc(-50% - 78px);
   min-width: 250px;
+  z-index: 100;
 
   &::before {
     content: '';

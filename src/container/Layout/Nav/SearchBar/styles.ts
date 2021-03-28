@@ -8,7 +8,8 @@ export const Container = styled.div`
   border: 1px solid ${(props) => props.theme.colors.lightGrey};
   border-radius: 25px;
   overflow: hidden;
-  width: 50%;
+  width: 100%;
+  grid-area: search;
 
   input {
     border: none;
@@ -17,7 +18,6 @@ export const Container = styled.div`
     padding: 5px 10px;
     padding-right: 0;
     font-size: 1rem;
-    min-width: 300px;
     width: 100%;
   }
 
