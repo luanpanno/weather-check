@@ -8,6 +8,7 @@ export const Container = styled.footer`
   background-color: ${(props) => props.theme.colors.dark};
   color: white;
   padding: 10px 0;
+  text-align: center;
 
   span {
     font-size: 0.9rem;
@@ -16,5 +17,10 @@ export const Container = styled.footer`
     a {
       color: ${(props) => props.theme.colors.lightGrey};
     }
+  }
+
+  @media screen and (max-width: 780px) {
+    padding: 20px 15px;
+    gap: 15px;
   }
 `;
