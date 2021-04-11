@@ -100,6 +100,5 @@ export interface LocationWeatherAllInfo {
   lon: number;
   timezone: string;
   timezone_offset: number;
-  current: WeatherResponse;
   daily: Daily[];
 }

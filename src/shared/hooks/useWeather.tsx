@@ -92,7 +92,7 @@ export const WeatherProvider: React.FC = ({ children }) => {
         lon: weather?.coord?.lon,
         lat: weather?.coord?.lat,
         units: unit,
-        exclude: 'minutely,hourly',
+        exclude: 'current,minutely,hourly',
       });
 
       setLocationInfo(response);
@@ -112,6 +112,12 @@ export const WeatherProvider: React.FC = ({ children }) => {
       fetchWeather(mainPlace);
     }
   }, [fetchWeather, fetchWeatherByCoords, mainPlace, userCoords]);
+
+  useEffect(() => {
+    if (weather) {
+      fetchLocationInfo();
+    }
+  }, [weather, fetchLocationInfo]);
 
   return (
     <WeatherContext.Provider

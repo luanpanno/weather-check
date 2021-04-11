@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+interface Props {
+  color?: string;
+}
+
+export const Container = styled.div<Props>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -35,7 +39,11 @@ export const Container = styled.div`
         position: absolute;
         width: 60px;
         height: 60px;
-        border: 10px solid #ffffff;
+        border: 10px solid
+          ${(props) =>
+            props.color === 'primary'
+              ? props.theme.colors.primaryLighter
+              : '#ffffff'};
         border-top-color: transparent;
         border-radius: 50%;
         animation: ldio-1fy5qn15irf 1s linear infinite;
