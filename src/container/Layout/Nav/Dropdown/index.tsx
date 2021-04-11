@@ -60,35 +60,39 @@ const Dropdown: React.FC = () => {
         {pinned?.length <= 0 ? (
           <NoPin>There&apos;s no place pinned</NoPin>
         ) : (
-          pinned?.map((pin) => {
+          pinned?.map((pinnedLocation) => {
             return (
-              <Pinned
-                key={pin}
-                onClick={() => handlePinnedClick(pin)}
-                active={query === pin}
-              >
+              <Pinned key={pinnedLocation} active={query === pinnedLocation}>
                 <div>
                   <SetMainButton
                     type="button"
-                    onClick={(e) => handleSetMain(e, pin)}
-                    isMainPlace={checkIsMainPlace(pin)}
-                    data-tip={handleMainPlaceTooltip(pin)}
-                    data-for={handleTooltipId(pin, 'main-place')}
+                    onClick={(e) => handleSetMain(e, pinnedLocation)}
+                    isMainPlace={checkIsMainPlace(pinnedLocation)}
+                    data-tip={handleMainPlaceTooltip(pinnedLocation)}
+                    data-for={handleTooltipId(pinnedLocation, 'main-place')}
                   >
                     <RiEye2Line className="eye-open" />
                     <RiEyeCloseFill className="eye-closed" />
-                    <Tooltip id={handleTooltipId(pin, 'main-place')} />
+                    <Tooltip
+                      id={handleTooltipId(pinnedLocation, 'main-place')}
+                    />
                   </SetMainButton>
-                  {pin}
+                  <button
+                    type="button"
+                    className="pinned-location"
+                    onClick={() => handlePinnedClick(pinnedLocation)}
+                  >
+                    {pinnedLocation}
+                  </button>
                 </div>
                 <RemoveButton
                   type="button"
-                  onClick={() => handleRemovePin(pin)}
+                  onClick={() => handleRemovePin(pinnedLocation)}
                   data-tip="Remove from pinneds"
-                  data-for={handleTooltipId(pin, 'remove')}
+                  data-for={handleTooltipId(pinnedLocation, 'remove')}
                 >
                   <RiCloseCircleFill />
-                  <Tooltip id={handleTooltipId(pin, 'remove')} />
+                  <Tooltip id={handleTooltipId(pinnedLocation, 'remove')} />
                 </RemoveButton>
               </Pinned>
             );

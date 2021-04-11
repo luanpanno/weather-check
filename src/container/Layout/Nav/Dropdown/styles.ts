@@ -67,6 +67,15 @@ export const Pinned = styled.div<PinnedProps>`
     background-color: ${(props) =>
       props.active ? 'rgba(255, 150, 0, 0.3)' : '#eaeaea'};
   }
+
+  .pinned-location {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    font-size: 1rem;
+  }
 `;
 
 export const SetMainButton = styled.button<MainButtonProps>`
