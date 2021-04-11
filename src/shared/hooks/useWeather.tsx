@@ -86,23 +86,20 @@ export const WeatherProvider: React.FC = ({ children }) => {
     }
   }, [unit, userCoords]);
 
-  const fetchLocationInfo = useCallback(
-    async (lat: number, lon: number) => {
-      try {
-        const response = await openWeatherService.getAllInfoByLocation({
-          lon,
-          lat,
-          units: unit,
-          exclude: 'minutely,hourly',
-        });
+  const fetchLocationInfo = useCallback(async () => {
+    try {
+      const response = await openWeatherService.getAllInfoByLocation({
+        lon: weather?.coord?.lon,
+        lat: weather?.coord?.lat,
+        units: unit,
+        exclude: 'minutely,hourly',
+      });
 
-        setLocationInfo(response);
-      } catch (error) {
-        handleError(error);
-      }
-    },
-    [unit]
-  );
+      setLocationInfo(response);
+    } catch (error) {
+      handleError(error);
+    }
+  }, [unit, weather]);
 
   useEffect(() => {
     if (!userCoords) {
