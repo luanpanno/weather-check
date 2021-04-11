@@ -26,7 +26,7 @@ const MainCard = () => {
   const { weather, pinned, setPinned } = useWeather();
 
   function placeText() {
-    return `${weather?.name}, ${weather?.sys.country}`;
+    return `${weather?.name}, ${weather?.sys?.country}`;
   }
 
   function findPin() {
@@ -77,22 +77,26 @@ const MainCard = () => {
           <RiMapPin2Line />
           {placeText()}
         </Place>
-        <Temp>{weather?.main.temp}°</Temp>
+        <Temp>{weather?.main?.temp}°</Temp>
         <MinMaxContainer>
           <MinMax>
-            <RiArrowDownFill /> {weather?.main.temp_min}°
+            <RiArrowDownFill /> {weather?.main?.temp_min}°
           </MinMax>
           <MinMax>
-            <RiArrowUpFill /> {weather?.main.temp_max}°
+            <RiArrowUpFill /> {weather?.main?.temp_max}°
           </MinMax>
         </MinMaxContainer>
       </TempContainer>
       <CloudsContainer>
         <WeatherDescription>
-          {weather?.weather[0]?.description}
+          {weather?.weather?.length > 0 ? weather?.weather[0]?.description : ''}
         </WeatherDescription>
-        <WeatherIcon description={weather?.weather[0]?.description} />
-        <p>cloudiness: {weather?.clouds.all}%</p>
+        <WeatherIcon
+          description={
+            weather?.weather?.length > 0 ? weather?.weather[0]?.description : ''
+          }
+        />
+        <p>cloudiness: {weather?.clouds?.all}%</p>
       </CloudsContainer>
     </Container>
   );

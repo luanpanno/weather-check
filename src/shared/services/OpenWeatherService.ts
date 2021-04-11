@@ -1,6 +1,7 @@
 import { AxiosInstance } from 'axios';
 
 import {
+  LocationWeatherAllInfo,
   WeatherParams,
   WeatherParamsByCoords,
   WeatherResponse,
@@ -27,6 +28,19 @@ export class OpenWeatherService {
   ): Promise<WeatherResponse> {
     const { data: response } = await this.api.get<WeatherResponse>(
       this.ENDPOINT,
+      {
+        params,
+      }
+    );
+
+    return response;
+  }
+
+  async getAllInfoByLocation(
+    params: WeatherParamsByCoords
+  ): Promise<LocationWeatherAllInfo> {
+    const { data: response } = await this.api.get<LocationWeatherAllInfo>(
+      `onecall`,
       {
         params,
       }

@@ -63,4 +63,43 @@ export interface WeatherParamsByCoords {
   lon: number | undefined;
   lang?: string;
   units?: string;
+  exclude?: string;
+}
+
+export interface Daily {
+  dt: number;
+  sunrise: number;
+  sunset: number;
+  temp: {
+    day: number;
+    min: number;
+    max: number;
+    night: number;
+    eve: number;
+    morn: number;
+  };
+  feels_like: {
+    day: number;
+    night: number;
+    eve: number;
+    morn: number;
+  };
+  pressure: number;
+  humidity: number;
+  dew_point: number;
+  wind_speed: number;
+  wind_deg: number;
+  weather: Weather[];
+  clouds: number;
+  pop: number;
+  uvi: number;
+}
+
+export interface LocationWeatherAllInfo {
+  lat: number;
+  lon: number;
+  timezone: string;
+  timezone_offset: number;
+  current: WeatherResponse;
+  daily: Daily[];
 }

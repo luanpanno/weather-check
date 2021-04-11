@@ -6,7 +6,7 @@ import {
   useState,
 } from 'react';
 
-import { WeatherResponse } from '../models/Weather';
+import { LocationWeatherAllInfo, WeatherResponse } from '../models/Weather';
 import { openWeatherService } from '../services';
 import { handleError } from '../utils/handleError';
 
@@ -16,12 +16,14 @@ interface Context {
   query: string;
   pinned: string[];
   mainPlace: string;
+  locationInfo: LocationWeatherAllInfo;
   setMainPlace: (value: string) => void;
   setQuery: (state: string) => void;
   setPinned: (state: string[]) => void;
   setUnit: (value: string) => void;
   fetchWeather: (query: string) => Promise<void>;
   fetchWeatherByCoords: () => Promise<void>;
+  fetchLocationInfo: (lat: number, lon: number) => Promise<void>;
 }
 
 export const WeatherContext = createContext<Context>({} as Context);
@@ -31,6 +33,9 @@ export const WeatherProvider: React.FC = ({ children }) => {
   const pinnedStorage = localStorage.getItem('pinned');
   const mainPlaceStorage = localStorage.getItem('mainPlace');
   const [weather, setWeather] = useState<WeatherResponse>();
+  const [locationInfo, setLocationInfo] = useState<LocationWeatherAllInfo>(
+    {} as LocationWeatherAllInfo
+  );
   const [unit, setUnit] = useState(unitStorage ?? 'standard');
   const [userCoords, setUserCoords] = useState<GeolocationCoordinates>();
   const [query, setQuery] = useState('');
@@ -81,6 +86,24 @@ export const WeatherProvider: React.FC = ({ children }) => {
     }
   }, [unit, userCoords]);
 
+  const fetchLocationInfo = useCallback(
+    async (lat: number, lon: number) => {
+      try {
+        const response = await openWeatherService.getAllInfoByLocation({
+          lon,
+          lat,
+          units: unit,
+          exclude: 'minutely,hourly',
+        });
+
+        setLocationInfo(response);
+      } catch (error) {
+        handleError(error);
+      }
+    },
+    [unit]
+  );
+
   useEffect(() => {
     if (!userCoords) {
       navigator.geolocation.getCurrentPosition((pos) => {
@@ -107,6 +130,8 @@ export const WeatherProvider: React.FC = ({ children }) => {
         setQuery,
         mainPlace,
         setMainPlace,
+        fetchLocationInfo,
+        locationInfo,
       }}
     >
       {children}
