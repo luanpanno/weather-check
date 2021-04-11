@@ -106,12 +106,12 @@ export const WeatherProvider: React.FC = ({ children }) => {
       navigator.geolocation.getCurrentPosition((pos) => {
         setUserCoords(pos.coords);
       });
-    } else if (!mainPlace) {
-      fetchWeatherByCoords().then();
-    } else if (mainPlace) {
+    } else if (mainPlace && !query) {
       fetchWeather(mainPlace);
+    } else if (!mainPlace && !query) {
+      fetchWeatherByCoords();
     }
-  }, [fetchWeather, fetchWeatherByCoords, mainPlace, userCoords]);
+  }, [fetchWeather, fetchWeatherByCoords, mainPlace, query, userCoords]);
 
   useEffect(() => {
     if (weather) {
