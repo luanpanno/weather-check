@@ -1,5 +1,6 @@
 import Loading from '../../../components/Loading';
 import { useWeather } from '../../../shared/hooks/useWeather';
+import { Day } from './Day';
 import { Container } from './styles';
 
 export const WeatherDays = () => {
@@ -13,5 +14,12 @@ export const WeatherDays = () => {
     );
   }
 
-  return <Container>info</Container>;
+  return (
+    <Container>
+      {locationInfo?.daily?.map((item, index) => {
+        // eslint-disable-next-line react/no-array-index-key
+        return <Day info={item} index={index + 1} key={index} />;
+      })}
+    </Container>
+  );
 };

@@ -116,3 +116,8 @@ export const WeatherDescription = styled.p`
   font-weight: bold;
   font-size: 1.2rem;
 `;
+
+export const CurrentDate = styled.span`
+  margin-bottom: 8px;
+  font-weight: bold;
+`;

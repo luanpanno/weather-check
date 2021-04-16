@@ -8,13 +8,14 @@ export const Container = styled.div`
   box-shadow: 0 1px 5px 2px ${(props) => props.theme.colors.lightTransparency};
   display: flex;
   justify-content: space-between;
-  gap: 10px;
   position: relative;
   width: 100%;
   min-width: 300px;
   max-width: 800px;
   min-height: 128px;
   color: black;
+  overflow-x: auto;
+  padding: 16px 8px;
 
   .loading-container {
     grid-column: 1/3;

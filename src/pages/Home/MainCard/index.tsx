@@ -9,6 +9,7 @@ import Loading from '../../../components/Loading';
 import Tooltip from '../../../components/Tooltip';
 import WeatherIcon from '../../../components/WeatherIcon';
 import { useWeather } from '../../../shared/hooks/useWeather';
+import { formatDate } from '../../../shared/utils/dates';
 import { handleTooltipId } from '../../../shared/utils/handleTooltipId';
 import {
   Container,
@@ -20,6 +21,7 @@ import {
   TempContainer,
   CloudsContainer,
   WeatherDescription,
+  CurrentDate,
 } from './styles';
 
 const MainCard = () => {
@@ -73,6 +75,7 @@ const MainCard = () => {
         <Tooltip id={handleTooltipId('weather', 'remove')} />
       </PinButton>
       <TempContainer>
+        <CurrentDate>{formatDate(new Date(), 'MM/dd/yyyy')}</CurrentDate>
         <Place>
           <RiMapPin2Line />
           {placeText()}
