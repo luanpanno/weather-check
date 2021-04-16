@@ -21,7 +21,7 @@ interface Context {
   setQuery: (state: string) => void;
   setPinned: (state: string[]) => void;
   setUnit: (value: string) => void;
-  fetchWeather: (query: string) => Promise<void>;
+  fetchWeather: (query: string, units?: string) => Promise<void>;
   fetchWeatherByCoords: () => Promise<void>;
   fetchLocationInfo: (lat: number, lon: number) => Promise<void>;
 }
@@ -56,20 +56,39 @@ export const WeatherProvider: React.FC = ({ children }) => {
     localStorage.setItem('mainPlace', mainPlace);
   }, [mainPlace]);
 
-  const fetchWeather = useCallback(
-    async (q: string) => {
+  const fetchLocationInfo = useCallback(
+    async ({ lon, lat }) => {
       try {
-        const response = await openWeatherService.getWeather({
-          q,
+        const response = await openWeatherService.getAllInfoByLocation({
+          lon,
+          lat,
           units: unit,
+          exclude: 'current,minutely,hourly',
         });
 
-        setWeather(response);
+        setLocationInfo(response);
       } catch (error) {
         handleError(error);
       }
     },
     [unit]
+  );
+
+  const fetchWeather = useCallback(
+    async (q: string, units?: string) => {
+      try {
+        const response = await openWeatherService.getWeather({
+          q,
+          units: units ?? unit,
+        });
+
+        setWeather(response);
+        await fetchLocationInfo(response?.coord);
+      } catch (error) {
+        handleError(error);
+      }
+    },
+    [fetchLocationInfo, unit]
   );
 
   const fetchWeatherByCoords = useCallback(async () => {
@@ -81,43 +100,34 @@ export const WeatherProvider: React.FC = ({ children }) => {
       });
 
       setWeather(response);
+      await fetchLocationInfo(response?.coord);
     } catch (error) {
       handleError(error);
     }
-  }, [unit, userCoords]);
+  }, [fetchLocationInfo, unit, userCoords]);
 
-  const fetchLocationInfo = useCallback(async () => {
-    try {
-      const response = await openWeatherService.getAllInfoByLocation({
-        lon: weather?.coord?.lon,
-        lat: weather?.coord?.lat,
-        units: unit,
-        exclude: 'current,minutely,hourly',
-      });
-
-      setLocationInfo(response);
-    } catch (error) {
-      handleError(error);
-    }
-  }, [unit, weather]);
-
-  useEffect(() => {
+  const fetchFirstWeather = useCallback(() => {
     if (!userCoords) {
       navigator.geolocation.getCurrentPosition((pos) => {
         setUserCoords(pos.coords);
       });
-    } else if (mainPlace && !query) {
+    } else if (mainPlace && !query && !weather) {
       fetchWeather(mainPlace);
-    } else if (!mainPlace && !query) {
+    } else if (!query && !weather) {
       fetchWeatherByCoords();
     }
-  }, [fetchWeather, fetchWeatherByCoords, mainPlace, query, userCoords]);
+  }, [
+    fetchWeather,
+    fetchWeatherByCoords,
+    mainPlace,
+    query,
+    userCoords,
+    weather,
+  ]);
 
   useEffect(() => {
-    if (weather) {
-      fetchLocationInfo();
-    }
-  }, [weather, fetchLocationInfo]);
+    fetchFirstWeather();
+  }, [fetchFirstWeather]);
 
   return (
     <WeatherContext.Provider

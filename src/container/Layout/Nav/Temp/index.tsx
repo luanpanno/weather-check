@@ -6,12 +6,14 @@ import { handleTooltipId } from '../../../../shared/utils/handleTooltipId';
 import { Container, TempButton } from './styles';
 
 const Temp = () => {
-  const { unit, setUnit } = useWeather();
+  const { unit, setUnit, fetchWeather, query } = useWeather();
 
-  function handleUnitClick(e: React.MouseEvent<HTMLButtonElement>) {
+  async function handleUnitClick(e: React.MouseEvent<HTMLButtonElement>) {
     const { name } = e.currentTarget;
 
     setUnit(name);
+
+    await fetchWeather(query, name);
   }
 
   return (
