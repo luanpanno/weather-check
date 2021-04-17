@@ -24,6 +24,7 @@ interface Context {
   fetchWeather: (query: string, units?: string) => Promise<void>;
   fetchWeatherByCoords: () => Promise<void>;
   fetchLocationInfo: (lat: number, lon: number) => Promise<void>;
+  hasUserCoords: () => boolean;
 }
 
 export const WeatherContext = createContext<Context>({} as Context);
@@ -129,6 +130,8 @@ export const WeatherProvider: React.FC = ({ children }) => {
     fetchFirstWeather();
   }, [fetchFirstWeather]);
 
+  const hasUserCoords = useCallback(() => !!userCoords, [userCoords]);
+
   return (
     <WeatherContext.Provider
       value={{
@@ -145,6 +148,7 @@ export const WeatherProvider: React.FC = ({ children }) => {
         setMainPlace,
         fetchLocationInfo,
         locationInfo,
+        hasUserCoords,
       }}
     >
       {children}

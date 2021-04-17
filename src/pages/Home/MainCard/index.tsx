@@ -8,6 +8,7 @@ import {
 import Loading from '../../../components/Loading';
 import Tooltip from '../../../components/Tooltip';
 import WeatherIcon from '../../../components/WeatherIcon';
+import Logo from '../../../container/Layout/Nav/Logo';
 import { useWeather } from '../../../shared/hooks/useWeather';
 import { formatDate } from '../../../shared/utils/dates';
 import { handleTooltipId } from '../../../shared/utils/handleTooltipId';
@@ -22,10 +23,11 @@ import {
   CloudsContainer,
   WeatherDescription,
   CurrentDate,
+  NoUserCoords,
 } from './styles';
 
 const MainCard = () => {
-  const { weather, pinned, setPinned } = useWeather();
+  const { weather, pinned, setPinned, hasUserCoords } = useWeather();
 
   function placeText() {
     return `${weather?.name}, ${weather?.sys?.country}`;
@@ -52,6 +54,20 @@ const MainCard = () => {
       return 'Remove from pinned list';
     }
     return 'Add to pinned list';
+  }
+
+  if (!hasUserCoords()) {
+    return (
+      <Container>
+        <NoUserCoords>
+          <Logo />
+          <p>
+            Search a location to find its weather, add as the main location, pin
+            to your locations and keep aware of it!
+          </p>
+        </NoUserCoords>
+      </Container>
+    );
   }
 
   if (!weather) {

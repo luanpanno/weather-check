@@ -121,3 +121,15 @@ export const CurrentDate = styled.span`
   margin-bottom: 8px;
   font-weight: bold;
 `;
+
+export const NoUserCoords = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+
+  & > p {
+    font-size: 1.1rem;
+  }
+`;
