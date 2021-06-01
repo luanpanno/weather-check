@@ -1,4 +1,4 @@
-import { useWeather } from '../../shared/hooks/useWeather';
+import { useWeather } from '../../shared/context/WeatherContext';
 import MainCard from './MainCard';
 import { Container } from './styles';
 import { WeatherDays } from './WeatherDays';

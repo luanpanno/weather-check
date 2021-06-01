@@ -6,7 +6,11 @@ import {
   useState,
 } from 'react';
 
-import { LocationWeatherAllInfo, WeatherResponse } from '../models/Weather';
+import {
+  Coord,
+  LocationWeatherAllInfo,
+  WeatherResponse,
+} from '../models/Weather';
 import { openWeatherService } from '../services';
 import { handleError } from '../utils/handleError';
 
@@ -23,8 +27,8 @@ interface Context {
   setUnit: (value: string) => void;
   fetchWeather: (query: string, units?: string) => Promise<void>;
   fetchWeatherByCoords: () => Promise<void>;
-  fetchLocationInfo: (lat: number, lon: number) => Promise<void>;
   hasUserCoords: () => boolean;
+  fetchLocationInfo: (coords: Coord, units?: string) => Promise<void>;
 }
 
 export const WeatherContext = createContext<Context>({} as Context);
@@ -58,12 +62,12 @@ export const WeatherProvider: React.FC = ({ children }) => {
   }, [mainPlace]);
 
   const fetchLocationInfo = useCallback(
-    async ({ lon, lat }) => {
+    async ({ lon, lat }, units?: string) => {
       try {
         const response = await openWeatherService.getAllInfoByLocation({
           lon,
           lat,
-          units: unit,
+          units: units ?? unit,
           exclude: 'current,minutely,hourly',
         });
 
@@ -84,7 +88,7 @@ export const WeatherProvider: React.FC = ({ children }) => {
         });
 
         setWeather(response);
-        await fetchLocationInfo(response?.coord);
+        await fetchLocationInfo(response?.coord, units);
       } catch (error) {
         handleError(error);
       }
