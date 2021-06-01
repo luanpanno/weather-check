@@ -8,7 +8,7 @@ import {
 import Loading from '../../../components/Loading';
 import Tooltip from '../../../components/Tooltip';
 import WeatherIcon from '../../../components/WeatherIcon';
-import { useWeather } from '../../../shared/hooks/useWeather';
+import { useWeather } from '../../../shared/context/WeatherContext';
 import { formatDate } from '../../../shared/utils/dates';
 import { handleTooltipId } from '../../../shared/utils/handleTooltipId';
 import {

@@ -1,5 +1,5 @@
 import Loading from '../../../components/Loading';
-import { useWeather } from '../../../shared/hooks/useWeather';
+import { useWeather } from '../../../shared/context/WeatherContext';
 import { Day } from './Day';
 import { Container } from './styles';
 

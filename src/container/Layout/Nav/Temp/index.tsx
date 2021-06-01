@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Tooltip from '../../../../components/Tooltip';
-import { useWeather } from '../../../../shared/hooks/useWeather';
+import { useWeather } from '../../../../shared/context/WeatherContext';
 import { handleTooltipId } from '../../../../shared/utils/handleTooltipId';
 import { Container, TempButton } from './styles';
 

@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from './assets/styles/GlobalStyles';
 import { theme } from './assets/styles/theme';
 import Routes from './routes/routes';
-import { WeatherProvider } from './shared/hooks/useWeather';
+import { WeatherProvider } from './shared/context/WeatherContext';
 
 function App() {
   return (

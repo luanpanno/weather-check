@@ -1,7 +1,7 @@
 import { RiCloseCircleFill, RiEye2Line, RiEyeCloseFill } from 'react-icons/ri';
 
 import Tooltip from '../../../../components/Tooltip';
-import { useWeather } from '../../../../shared/hooks/useWeather';
+import { useWeather } from '../../../../shared/context/WeatherContext';
 import { handleTooltipId } from '../../../../shared/utils/handleTooltipId';
 import {
   Container,
