@@ -6,7 +6,7 @@ by Luan Panno
 
 1.  Install the repository dependencies by running the following line in your terminal:
 
-        yarn add
+        yarn
 
 2.  Run the project by the following line:
 
