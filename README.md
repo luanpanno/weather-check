@@ -28,8 +28,6 @@ by Luan Panno
 
 - [Editor Config](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
 
-- [React-Native/React/Redux snippets for es6/es7](https://marketplace.visualstudio.com/items?itemName=EQuimper.react-native-react-redux)
-
 - [vscode-styled-components](https://marketplace.visualstudio.com/items?itemName=jpoissonnier.vscode-styled-components)
 
 - [Color Highlight](https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight)
